@@ -1,7 +1,9 @@
 package com.campusfix.campusfix.controller;
 
-import com.campusfix.campusfix.entity.Issue;
+import com.campusfix.campusfix.dto.IssueRequestDto;
+import com.campusfix.campusfix.dto.IssueResponseDto;
 import com.campusfix.campusfix.service.IssueService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,26 +19,26 @@ public class IssueController {
     }
 
     @PostMapping
-    public Issue createIssue(@RequestBody Issue issue) {
-        return issueService.createIssue(issue);
+    public IssueResponseDto createIssue(@Valid @RequestBody IssueRequestDto dto) {
+        return issueService.createIssue(dto);
     }
 
     @GetMapping
-    public List<Issue> getAllIssues() {
+    public List<IssueResponseDto> getAllIssues() {
         return issueService.getAllIssues();
     }
 
     @GetMapping("/{id}")
-    public Issue getIssueById(@PathVariable Long id) {
+    public IssueResponseDto getIssueById(@PathVariable Long id) {
         return issueService.getIssueById(id);
     }
 
     @PutMapping("/{id}")
-    public Issue updateIssue(
+    public IssueResponseDto updateIssue(
             @PathVariable Long id,
-            @RequestBody Issue issue) {
+            @Valid @RequestBody IssueRequestDto dto) {
 
-        return issueService.updateIssue(id, issue);
+        return issueService.updateIssue(id, dto);
     }
 
     @DeleteMapping("/{id}")

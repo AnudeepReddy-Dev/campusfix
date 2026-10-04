@@ -1,7 +1,9 @@
 package com.campusfix.campusfix.controller;
 
-import com.campusfix.campusfix.entity.User;
+import com.campusfix.campusfix.dto.UserRequestDto;
+import com.campusfix.campusfix.dto.UserResponseDto;
 import com.campusfix.campusfix.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,24 +19,26 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public UserResponseDto createUser(@Valid @RequestBody UserRequestDto dto) {
+        return userService.createUser(dto);
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserResponseDto> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
+    public UserResponseDto getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable Long id,
-                           @RequestBody User user) {
-        return userService.updateUser(id, user);
+    public UserResponseDto updateUser(
+            @PathVariable Long id,
+            @Valid @RequestBody UserRequestDto dto) {
+
+        return userService.updateUser(id, dto);
     }
 
     @DeleteMapping("/{id}")
