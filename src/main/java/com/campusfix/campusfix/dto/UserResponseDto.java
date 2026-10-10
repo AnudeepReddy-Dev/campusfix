@@ -1,16 +1,18 @@
 package com.campusfix.campusfix.dto;
 
+import com.campusfix.campusfix.enums.Role;
+
 public class UserResponseDto {
 
     private Long id;
     private String name;
     private String email;
-    private String role;
+    private Role role;
 
     public UserResponseDto() {
     }
 
-    public UserResponseDto(Long id, String name, String email, String role) {
+    public UserResponseDto(Long id, String name, String email, Role role) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -41,11 +43,11 @@ public class UserResponseDto {
         this.email = email;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }

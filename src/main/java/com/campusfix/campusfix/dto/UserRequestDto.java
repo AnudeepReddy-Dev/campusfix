@@ -1,7 +1,9 @@
 package com.campusfix.campusfix.dto;
 
+import com.campusfix.campusfix.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class UserRequestDto {
 
@@ -15,8 +17,8 @@ public class UserRequestDto {
     @NotBlank(message = "Password is required")
     private String password;
 
-    @NotBlank(message = "Role is required")
-    private String role;
+    @NotNull(message = "Role is required")
+    private Role role;
 
     public UserRequestDto() {
     }
@@ -45,11 +47,11 @@ public class UserRequestDto {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }

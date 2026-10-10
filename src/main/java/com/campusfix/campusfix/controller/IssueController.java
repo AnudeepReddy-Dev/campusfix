@@ -2,6 +2,7 @@ package com.campusfix.campusfix.controller;
 
 import com.campusfix.campusfix.dto.IssueRequestDto;
 import com.campusfix.campusfix.dto.IssueResponseDto;
+import com.campusfix.campusfix.enums.IssueStatus;
 import com.campusfix.campusfix.service.IssueService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -44,5 +45,25 @@ public class IssueController {
     @DeleteMapping("/{id}")
     public void deleteIssue(@PathVariable Long id) {
         issueService.deleteIssue(id);
+    }
+
+    @PatchMapping("/{id}/status")
+    public IssueResponseDto updateIssueStatus(
+            @PathVariable Long id,
+            @RequestParam IssueStatus status) {
+
+        return
+                issueService.updateIssueStatus(id, status);
+    }
+
+    @PatchMapping("/{issueId}/assign/{technicianId}")
+    public IssueResponseDto assignTechnician(
+            @PathVariable Long issueId,
+            @PathVariable Long technicianId) {
+
+        return issueService.assignTechnician(
+                issueId,
+                technicianId
+        );
     }
 }
